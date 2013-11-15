@@ -19,6 +19,15 @@ class Library
   end
 
   def check_out(user, book)
+	if user.borrowed_books.length == 2
+		return "Sorry, you've already checked out #{@borrowed_books} and our limit is 2 books/user. You'll need to check-in a book first before you can borrow this book."
+	elsif book.status == "available"
+		book.borrower = user
+		book.status = "checked out"
+		return "Thank you for checking out #{book}. We hope you enjoy this wonderful creation."
+	else
+		puts "Sorry, this book is already checked out by another user"
+	end
   end
 
   def check_in(book)
