@@ -6,13 +6,26 @@ class Library
   def books
   end
 
-  def list_books
+ def list_books
+	@books.each do |book, status|
+		puts "Title: #{book} - Status: #{staus}"
+	end
   end
 
   def borrowed_books
+	@books.each do |n|
+		if book.status == "checked out"
+			puts |n|
+		end
+	end
   end
 
   def available_books
+	book.each do |n|
+		if book.status == "available"
+			puts n
+		end
+	end
   end
 
   def add_book(book)
