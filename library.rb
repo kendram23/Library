@@ -4,6 +4,7 @@ class Library
   end
 
   def books
+	@books
   end
 
  def list_books
@@ -28,7 +29,8 @@ class Library
 	end
   end
 
-  def add_book(book)
+   def add_book(book)
+	@book.push(book)
   end
 
   def check_out(user, book)
@@ -43,26 +45,31 @@ class Library
 	end
   end
 
+ 
   def check_in(book)
+	if 
   end
+  
 end
+
 
 class Borrower
   def initialize(name)
+	@name = name
+	@borrowed_books = []
   end
-
+ 
   def borrowed_books
+	@borrowed_books
   end
 
   def name
+	@name
   end
 
-  def borrowed_books_count
-  end
-
-  def borrowed_books_list
-  end
-end
+  # def borrowed_books_list
+	
+  # end
   
 end
 
