@@ -78,5 +78,3 @@ puts "-------------------------"
 puts "this should only show the available books"
 library.available_books
 puts "-------------------------"
-
-
