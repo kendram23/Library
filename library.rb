@@ -32,7 +32,7 @@ class Library
   def borrowed_books
 	   @books.each do |book, user|
 		    if book.status == "checked out"
-		    	puts "The following books are checked out #{book.title}"
+		    	puts #{book.title}
         else
           return "All books are currently available"
 		    end
@@ -53,48 +53,63 @@ class Library
 
   
   def check_out(user, book)
-  	if user.borrowed_books.length == 2
-  		return "Sorry, you've already checked out 2 books."
-  	elsif book.status == "available"
+  	
+    if user.borrowed_books_array.length == 2   # Checks to see if the user has 2 books already checked out
+  		puts "Sorry, you've already checked out 2 books."
+      return
+    end
+
+    if book.status == "checked_out"            # Checks to see if the book is available to be checked out
+      puts "Sorry, this book is already checked out"
+      return
+    end
+
+      # If the user reachs this point in the method, they are able to check out the book         
       book.borrower = user
       book.status = "checked out"
-      return "Thank you for checking out this book."
-    else
-  		return "Sorry, this book is checked out already"
-	   end
+      user.borrowed_books(book)
+      return "Thank you for checking out #{book.title}. We hope you enjoy!"
+    
   end
 
  
   def check_in(book)
-	   book.borrower = []
-     book.status = "available"
+	   if book.status == "checked out"       # Checks to make sure that the book is currently checked out
+       book.borrower = []
+       book.status = "available"
+     else
+      "That book has already been checked in"
+     end
   end
 
 end
 
 
 class Borrower
+    
+    attr_accessor :borrowed_books_array
+
   def initialize(name)
   	@name = name
-  	@borrowed_books = []
+  	@borrowed_books_array = []
   end
  
-  def borrowed_books
-    @borrowed_books
+  def borrowed_books(book)
+      @borrowed_books_array << book
   end
 
   def name
 	 @name
   end
 
-  def borrowed_books_list
-	 @books.each do |book|
-    if book.borrower == user
-      @borrowed_books << borrowed_books_list
-    puts "You currently have these books check out: #{@borrowed_books}.join('Title:')"
-    end
-   end
-  end
+  # def borrowed_books_list
+	 # @books.each do |book|
+  #   if book.borrower == user
+  #     @borrowed_books << borrowed_books_list
+  #   puts "You currently have these books check out: #{@borrowed_books}.join('Title:')"
+  #   gitend
+  #  end
+  # end
   
 end
 
