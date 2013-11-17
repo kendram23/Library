@@ -1,182 +1,132 @@
 class Library
   def initialize
     @books = []
+    @borrowed_books = []
+    @available_books = []
   end
 
   def books
-	@books
+	 @books
   end
+
+  # This allows books to be added to the library
+
+  def add_book(book)
+     @books << book
+  end
+
+  # This method lists the entire library with the title and status of the book
 
  def list_books
-	@books.each do |book, status|
-		puts "Title: #{book} - Status: #{staus}"
-	end
+	 if @books != []
+    @books.each do |book|
+		puts "Book Title: #{book.title} - Book Status: #{book.status}"
+    end
+   else
+    puts "Sorry, we don't have any books in this library. You should add your favorites!"
+   end
   end
+
+  # This method lists all books in the library that have a status of "checked out"
 
   def borrowed_books
-	@books.each do |n|
-		if book.status == "checked out"
-			puts |n|
-		end
-	end
+	   @books.each do |book, user|
+		    if book.status == "checked out"
+		    	puts "The following books are checked out #{book.title}"
+        else
+          return "All books are currently available"
+		    end
+	   end
   end
+
+  # This method lists all books in the library that have a status of "available"
 
   def available_books
-	book.each do |n|
-		if book.status == "available"
-			puts n
-		end
-	end
+  	@books.each do |book|
+  		if book.status == "available"
+  			return "Book Title: #{book.title}"
+      else
+        puts "I'm sorry. All books are currently checked out"
+  		end
+	   end
   end
 
-   def add_book(book)
-	@book.push(book)
-  end
-
+  
   def check_out(user, book)
-	if user.borrowed_books.length == 2
-		return "Sorry, you've already checked out #{@borrowed_books} and our limit is 2 books/user. You'll need to check-in a book first before you can borrow this book."
-	elsif book.status == "available"
-		book.borrower = user
-		book.status = "checked out"
-		return "Thank you for checking out #{book}. We hope you enjoy this wonderful creation."
-	else
-		puts "Sorry, this book is already checked out by another user"
-	end
+  	if user.borrowed_books.length == 2
+  		return "Sorry, you've already checked out 2 books."
+  	elsif book.status == "available"
+      book.borrower = user
+      book.status = "checked out"
+      return "Thank you for checking out this book."
+    else
+  		return "Sorry, this book is checked out already"
+	   end
   end
 
  
   def check_in(book)
-	if 
+	   book.borrower = []
+     book.status = "available"
   end
-  
+
 end
 
 
 class Borrower
   def initialize(name)
-	@name = name
-	@borrowed_books = []
+  	@name = name
+  	@borrowed_books = []
   end
  
   def borrowed_books
-	@borrowed_books
+    @borrowed_books
   end
 
   def name
-	@name
+	 @name
   end
 
-  # def borrowed_books_list
-	
-  # end
+  def borrowed_books_list
+	 @books.each do |book|
+    if book.borrower == user
+      @borrowed_books << borrowed_books_list
+    puts "You currently have these books check out: #{@borrowed_books}.join('Title:')"
+    end
+   end
+  end
   
 end
 
 class Book
   def initialize(title, author)
-	@title = title
-	@author = author
-	@status = "available"
-	@borrower = nil
+  	@title = title
+  	@author = author
+  	@status = "available"
+  	@borrower = nil
   end
   
   def title
-	@title
+	 @title
   end
   
   def author
-	@author
+	 @author
   end
   
   def status
-	@status
+	 @status
   end
   
   def status=(new_value)
-	@status = new_value
+	 @status = new_value
   end
   
   def borrower
-	@borrower
+	 @borrower
   end
   
   def borrower=(new_value)
-	@borrower = new_value
+	 @borrower = new_value
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class Library
-  # def initialize
-    # @books = []
-  # end
-
-  # def books
-	
-  # end
-
-  # def list_books
-	# @books = Book.new
-  # end
-
-  # def borrowed_books
-  # end
-
-  # def available_books
-  # end
-
-  # def add_book(book)
-  # end
-
-  # def check_out(user, book)
-	# # if borrowed_books_count == 2
-		# # puts "Sorry you must first check in a book before you can check out another book"
-	# # else
-		# # puts "Congratulations! You've checked out #{books}"
-	# # end
-  # end
-
-  # def check_in(book)
-  # end
-# end
-
-# class Borrower
-  # def initialize(name)
-	# @name = name
-	# @books = []
-	# list_books = 0
-  # end
-
-  # def borrowed_books
-  # end
-
-  # def name
-  # end
-
-  # def borrowed_books_count
-  # end
-
-  # def borrowed_books_list
-  # end
-# end
-
-# class Book
-  # def initialize(title, author)
-	# @title = title
-	# @author = author
-  # end
-# end
