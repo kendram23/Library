@@ -59,6 +59,10 @@ puts "but this book should fail since it is already checked out"
 library.check_out(ricardo, stranger)
 puts "-------------------------"
 
+puts "this should run and allow a user to check a book back in"
+library.check_in(karamazov)
+puts "-------------------------"
+
 puts "these should return the books each user checked out"
 puts ''
 puts "mike:"

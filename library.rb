@@ -29,8 +29,6 @@ class Library
   # This method lists all books in the library that have a status of "checked out" and who has them checked
   def borrowed_books
 	   if @books.each {|book, user| puts "Book Title: #{book.title}, Checked Out By: #{book.borrower}" if book.status == "checked out"}
-      else
-        puts "All books are currently available"
 	   end
   end
 
@@ -51,7 +49,7 @@ class Library
     end
 
     if book.status == "checked out"            # Checks to see if the book is available to be checked out
-      puts "Sorry, this book is already checked out"
+      puts "Sorry, '#{book.title}' is already checked out"
       return
     end
 
@@ -88,16 +86,11 @@ class Borrower
   end
  
   def borrowed_books(book)                           # Adds the user's borrowed books to the book array list
-      @borrowed_books_array << book
+    @borrowed_books_array << book
   end
 
-  def borrowed_books_list
-	 @books.each do |book, user|
-    if book.borrower == user
-      @borrowed_books_array << book
-    puts "You currently have these books check out: #{@borrowed_books_array}"
-    end
-   end
+  def borrowed_books_list                            # Lists the borrowed books of a sepecific user
+	  @borrowed_books_array.each {|book| puts book.title}
   end
   
 end
@@ -105,7 +98,7 @@ end
 # This class creates the attributes of the book that will be added to the library
 class Book
   
-  attr_writer :status, :borrower
+  attr_accessor :status, :borrower
   attr_reader :title, :author
 
   def initialize(title, author)
@@ -115,19 +108,4 @@ class Book
   	@borrower = nil
   end
   
-  def status
-	 @status
-  end
-  
-  def status=(new_value)
-	 @status = new_value
-  end
-  
-  def borrower
-	 @borrower
-  end
-  
-  def borrower=(new_value)
-	 @borrower = new_value
-  end
 end
