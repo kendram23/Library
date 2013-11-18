@@ -22,6 +22,8 @@ class Library
     @books.each do |book|
 		puts "Book Title: #{book.title} - Book Status: #{book.status}"
     end
+   
+  # Runs if we haven't added any books to the library
    else
     puts "Sorry, we don't have any books in this library. You should add your favorites!"
    end
@@ -42,12 +44,9 @@ class Library
   # This method lists all books in the library that have a status of "available"
 
   def available_books
-  	@books.each do |book|
-  		if book.status == "available"
-  			return "Book Title: #{book.title}"
-      else
-        puts "I'm sorry. All books are currently checked out"
-  		end
+  	if @books.each {|book| puts "Book Title: #{book.title}" if book.status == "available"}
+    else
+      puts "I'm sorry, all books are currently checked out"
 	   end
   end
 
@@ -68,10 +67,9 @@ class Library
       book.borrower = user
       book.status = "checked out"
       user.borrowed_books(book)
-      return "Thank you for checking out #{book.title}. We hope you enjoy!"
-    
+      puts "Thank you for checking out #{book.title}. We hope you enjoy!"
+      return
   end
-
  
   def check_in(book)
 	   if book.status == "checked out"       # Checks to make sure that the book is currently checked out
@@ -102,14 +100,14 @@ class Borrower
 	 @name
   end
 
-  # def borrowed_books_list
-	 # @books.each do |book|
-  #   if book.borrower == user
-  #     @borrowed_books << borrowed_books_list
-  #   puts "You currently have these books check out: #{@borrowed_books}.join('Title:')"
-  #   gitend
-  #  end
-  # end
+  def borrowed_books_list
+	 @books.each do |book|
+    if book.borrower == user
+      @borrowed_books << borrowed_books_list
+    puts "You currently have these books check out: #{@borrowed_books}.join('Title:')"
+    end
+   end
+  end
   
 end
 
